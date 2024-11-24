@@ -9,11 +9,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            UserSeeder::class,
             DestinationSeeder::class,
             HotelSeeder::class,
             TransportationSeeder::class,
             PackageSeeder::class,
-            PackageDestinationSeeder::class,
+
         ]);
     }
 }

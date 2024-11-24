@@ -9,7 +9,7 @@ use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\TransportationController;
 
 Route::get('/', function () {
-    return view('pages.destination.index');
+    return view('pages.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -21,6 +21,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('hotels', HotelController::class);
     Route::resource('transportations', TransportationController::class);
     Route::resource('packages', PackageController::class);
+
+    Route::middleware('auth:sanctum')->get('/destinations/{id}/hotels', [DestinationController::class, 'getHotels']);
 });
 
 // Route::get('/dashboard', function () {

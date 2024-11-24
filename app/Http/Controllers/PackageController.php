@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hotel;
 use App\Models\Package;
-use App\Models\Transportation;
 use App\Models\Destination;
 use Illuminate\Http\Request;
+use App\Models\Transportation;
 
 class PackageController extends Controller
 {
@@ -66,5 +67,6 @@ class PackageController extends Controller
         $package->delete();
         return redirect()->route('packages.index')->with('success', 'Package deleted successfully.');
     }
+
 }
 

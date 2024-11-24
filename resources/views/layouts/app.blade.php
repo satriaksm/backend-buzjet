@@ -40,7 +40,6 @@
                     timer: 2000
                 });
             @endif
-
         </script>
     </body>
 </html>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Hotel;
 use App\Models\Destination;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class HotelController extends Controller
 {
@@ -54,6 +55,15 @@ class HotelController extends Controller
     {
         $hotel->delete();
         return redirect()->route('hotels.index')->with('success', 'Hotel deleted successfully.');
+    }
+
+    public function getByDestination($destinationId): JsonResponse
+    {
+        $hotels = Hotel::where('destination_id', $destinationId)
+            ->select('id', 'name')
+            ->get();
+
+        return response()->json($hotels);
     }
 }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hotel;
 use App\Models\Destination;
 use Illuminate\Http\Request;
 
@@ -66,5 +67,18 @@ class DestinationController extends Controller
     {
         $destination->delete();
         return redirect()->route('destinations.index')->with('success', 'Destination deleted successfully.');
+    }
+
+    public function getHotels($id)
+    {
+        // Ambil hotel berdasarkan destination_id
+        $hotels = Hotel::where('destination_id', $id)->get();
+
+        // Cek apakah ada hotel
+        if ($hotels->isEmpty()) {
+            return response()->json(['message' => 'No hotels found'], 404);
+        }
+
+        return response()->json($hotels);
     }
 }
